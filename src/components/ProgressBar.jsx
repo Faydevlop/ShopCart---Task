@@ -1,12 +1,25 @@
+import toast, { Toaster } from "react-hot-toast";
 import { THRESHOLD } from "../constants/products";
+import { useState } from "react";
 
 
 const ProgressBar = ({subtotal,remainingForGift,hasEarnedGift}) => {
+
+    let [count,setCount] = useState(true)
+
+    if(hasEarnedGift && count){
+        toast.success("Free Iteam Earned")
+        setCount(false)
+    }
+
+
+
 
     let progress = Math.min(100,(subtotal / THRESHOLD) * 100);
 
   return (
     <div className='bg-blue-50 p-4 rounded-lg mb-6 '>
+        <div><Toaster/></div>
         {
             hasEarnedGift ? (
                 <div className='text-green-600 font-medium ' >
